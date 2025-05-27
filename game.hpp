@@ -35,7 +35,7 @@ inline Game::Game(int w, int h, std::string t) : width{w}, height{h},title{t}, m
 inline void Game::Run() {
 	InitWindow(width, height, title.c_str());
 	entities.push_back(std::make_unique<Player>(Rectangle{12.0, 12.0, 76.0, 76.0}, 100, 20, 200.0, map));
-	entities.push_back(std::make_unique<Entity>(Rectangle{60.0, 60.0, 76.0, 76.0}, 100, 20, 200.0, map));
+	//entities.push_back(std::make_unique<Entity>(Rectangle{60.0, 60.0, 76.0, 76.0}, 100, 20, 200.0, map));
 	while (!WindowShouldClose()) {	
 		delta = GetFrameTime();	
 

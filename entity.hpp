@@ -45,6 +45,7 @@ inline void Entity::move(float x, float y, std::vector<std::unique_ptr<Entity>>&
 		auto collision_rect = collision(*e);
 		if (collision_rect) {
 			std::cout << "COLLISION\n";
+			
 		}
 	}
 }
@@ -62,7 +63,8 @@ inline std::optional<Rectangle> Entity::collision(Entity& other) {
 	if (&other == this) return std::nullopt; // cannot collide with self
 
 	Rectangle& other_model = other.getBounds();
-	if (model.x > other_model.x && model.x < other_model.x + other_model.width && model.y > other_model.y && model.y < other_model.y + other_model.height) return Rectangle {model.x, model.y, other_model.width + other_model.x - model.x, other_model.height + other_model.y - model.y};
+	/*if (model.x > other_model.x && model.x < other_model.x + other_model.width && model.y > other_model.y && model.y < other_model.y + other_model.height) return Rectangle {model.x, model.y, other_model.width + other_model.x - model.x, other_model.height + other_model.y - model.y};*/
+	if (CheckCollisionRecs(model, other_model)) return GetCollisionRec(model, other_model);
 
 	return std::nullopt;
 }
