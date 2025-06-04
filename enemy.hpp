@@ -1,6 +1,7 @@
 #include "entity.hpp"
 #include "player.hpp"
 #pragma once
+<template typename S>
 class Enemy : public Entity {
 	private:
 		//void attack(std::vector<std::unique_ptr<Entity>>& entities);
@@ -35,7 +36,7 @@ inline void Enemy::move(float x, float y, const std::list<std::unique_ptr<Entity
 		auto collision_rect = collision(*e);
 		if (collision_rect) {
 			if (dynamic_cast<Projectile*>(e.get()) != nullptr) {
-				std::cout << "oof\n";
+				//std::cout << "oof\n";
 				hp -= e->get_atk();
 			}
 

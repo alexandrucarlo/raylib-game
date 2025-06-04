@@ -37,19 +37,27 @@ class Game {
 };
 
 inline Game::Game(int w, int h, std::string t) : width{w}, height{h},title{t}, map{std::make_shared<Rectangle>(0, 0, w, h)} {
-	std::cout << "we're up and running! -alext";
+	//std::cout << "we're up and running! -alext";
 }
 
 inline void Game::Run() {
+	// init some stuff
+	SetTraceLogLevel(LOG_ERROR);
 	InitWindow(width, height, title.c_str());
+	
+	//the player has come
 	entities.push_back(std::make_unique<Player>(Rectangle{12.0, 12.0, 76.0, 76.0}, 100, 20, 200.0, map));
-	//entities.push_back(std::make_unique<Entity>(Rectangle{60.0, 60.0, 76.0, 76.0}, 100, 20, 200.0, map));
+	
 	while (!WindowShouldClose()) {	
 		delta = GetFrameTime();	
 		timer += delta;
+		//spawn enemies
 		float spawn_time = 3;
 		if (timer >= spawn_time) {
-	entities.push_back(std::make_unique<Enemy>(Rectangle{12.0, 12.0, 76.0, 76.0}, 100, 20, 200.0, map));
+	entities.push_back(std::make_unique<Enemy>(Rectangle{
+				Random::get(0, width),
+				Random::get(0, height),
+				76.0, 76.0}, 100, 20, 200.0, map));
 		timer -= spawn_time;
 		}
 
@@ -74,6 +82,7 @@ inline void Game::Run() {
 		}
 		
 		DrawText(std::to_string(GetTime()).c_str(), 12, 12, 24, BLACK);
+		DrawText(std::to_string(entities.size()).c_str(), 12, 36, 24, BLACK);
 
 		EndDrawing();
 	}

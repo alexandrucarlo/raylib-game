@@ -6,7 +6,7 @@ class Projectile: public Entity {
 		void move(float x, float y, const std::list<std::unique_ptr<Entity>>& entities) override;
 	public:
 		Projectile(Rectangle start_pos, int start_hp, int start_atk, float start_speed, const std::shared_ptr<Rectangle> m, const Vector2 d) : Entity{start_pos, start_hp, start_atk, start_speed, m}, direction{d} {
-			std::cout << "miau proiectil\n";
+			//std::cout << "miau proiectil\n";
 		}
 		~Projectile() {std::cout << "arrivederci\n";}
 		void render() override {DrawRectangleRec(model, YELLOW);}
@@ -33,13 +33,8 @@ inline void Projectile::move(float x, float y, const std::list<std::unique_ptr<E
 				hp--;
 			}
 			hp = 0;*/
-		}
-	}
-
-
-
-
-
+			}
+		}	
 	}
 	else hp = 0;
   }

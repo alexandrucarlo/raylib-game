@@ -7,7 +7,7 @@ class Player : public Entity {
 		void move(float x, float y, const std::list<std::unique_ptr<Entity>>& entities) override;
 	public:
 		Player(Rectangle start_pos, int start_hp, int start_atk, float start_speed, const std::shared_ptr<Rectangle> m) : Entity{start_pos, start_hp, start_atk, start_speed, m} {
-			std::cout << "miau jucatorule\n";
+			//std::cout << "miau jucatorule\n";
 		}
 		void render() override {DrawRectangleRec(model, BLUE);}
 		void update(float& delta, std::list<std::unique_ptr<Entity>>& entities) override;

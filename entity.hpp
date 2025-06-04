@@ -33,7 +33,7 @@ class Entity {
 		}
 		virtual void render() = 0;
 		virtual void update(float& delta, std::list<std::unique_ptr<Entity>>& entities) = 0;
-		//virtual ~Entity() {}
+		virtual ~Entity() {}
 
 		
 };
