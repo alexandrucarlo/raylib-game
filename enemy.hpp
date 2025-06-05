@@ -1,7 +1,6 @@
 #include "entity.hpp"
 #include "player.hpp"
 #pragma once
-<template typename S>
 class Enemy : public Entity {
 	private:
 		//void attack(std::vector<std::unique_ptr<Entity>>& entities);
@@ -20,8 +19,6 @@ inline void Enemy::move(float x, float y, const std::list<std::unique_ptr<Entity
 	model.y += y * speed;
 
 	// in bounds - no need
-
-	
 }
   inline void Enemy::update(float& delta, std::list<std::unique_ptr<Entity>>& entities) {
 	auto player_itr = std::find_if(entities.begin(), entities.end(), [](const auto& e) {
