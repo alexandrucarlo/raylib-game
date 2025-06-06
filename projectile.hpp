@@ -8,7 +8,7 @@ class Projectile: public Entity {
 		Projectile(Rectangle start_pos, int start_hp, int start_atk, float start_speed, const std::shared_ptr<Rectangle> m, const Vector2 d) : Entity{start_pos, start_hp, start_atk, start_speed, m}, direction{d} {
 			//std::cout << "miau proiectil\n";
 		}
-		~Projectile() {std::cout << "arrivederci\n";}
+		~Projectile() {/*std::cout << "arrivederci\n";*/}
 		void render() override {DrawRectangleRec(model, YELLOW);}
 		void update(float& delta, std::list<std::unique_ptr<Entity>>& entities) override;
 };
@@ -23,18 +23,18 @@ inline void Projectile::move(float x, float y, const std::list<std::unique_ptr<E
     if (CheckCollisionRecs(model, *map)) {      
       move(direction.x*delta, direction.y*delta, entities);
 
-	  // collision
-	  for (auto& e : entities) {
-		auto collision_rect = collision(*e);
-		if (collision_rect) {
+	  // for now we pierce all 
+	  //for (auto& e : entities) {
+		//auto collision_rect = collision(*e);
+		//if (collision_rect) {
 			//std::cout << "COLLISION\n";
-			/*if (dynamic_cast<Enemy*>(e.get()) != nullptr) {
+			//if (dynamic_cast<Enemy*>(e.get()) != nullptr) {
 				//std::cout << "oof\n";
-				hp--;
-			}
-			hp = 0;*/
-			}
-		}	
+			//	hp--;
+			//}
+			//hp = 0;
+			//}
+		//}	
 	}
 	else hp = 0;
   }

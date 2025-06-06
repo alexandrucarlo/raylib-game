@@ -8,6 +8,8 @@
 #include "enemy.hpp"
 #include "random.hpp"
 
+
+
 enum class State {
 	Game_Start,
 	Game_Playing,
@@ -54,11 +56,22 @@ inline void Game::Run() {
 		//spawn enemies
 		float spawn_time = 3;
 		if (timer >= spawn_time) {
-	entities.push_back(std::make_unique<Enemy>(Rectangle{
-				Random::get(0, width),
-				Random::get(0, height),
-				76.0, 76.0}, 100, 20, 200.0, map));
-		timer -= spawn_time;
+			// examples of template usage
+			entities.push_back(make_enemy(Rectangle{
+				static_cast<float>(Random::get(0, width)), // added static_cast for no warnings
+				static_cast<float>(Random::get(0, height)),
+				76.0, 76.0}, 
+				100, 20, 200.0, map,
+				[](const Rectangle& r) { DrawRectangleRec(r, RED); }));
+			if (GetTime() >= 20) 
+				entities.push_back(make_enemy(Rectangle{
+					static_cast<float>(Random::get(0, width)),
+					static_cast<float>(Random::get(0, height)),
+					76.0, 76.0}, 
+					100, 20, 200.0, map,
+					[](const Rectangle& r) { DrawRectangleRec(r, GREEN); }));
+
+			timer -= spawn_time;
 		}
 
 		for (auto &e: entities) {
@@ -82,7 +95,7 @@ inline void Game::Run() {
 		}
 		
 		DrawText(std::to_string(GetTime()).c_str(), 12, 12, 24, BLACK);
-		DrawText(std::to_string(entities.size()).c_str(), 12, 36, 24, BLACK);
+		//DrawText(std::to_string(entities.size()).c_str(), 12, 36, 24, BLACK);
 
 		EndDrawing();
 	}

@@ -7,9 +7,9 @@
 #define W_WIDTH 800
 #define W_HEIGHT 600
 #pragma once
-
 class Entity {
 	protected:
+
 		Rectangle model;
 		int hp, atk;
 		float speed;
@@ -46,3 +46,8 @@ inline std::optional<Rectangle> Entity::collision(Entity& other) {
 
 	return std::nullopt;
 }
+
+
+
+
+
